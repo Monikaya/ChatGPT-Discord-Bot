@@ -1,0 +1,4 @@
+nextcord~=2.3.2
+aiohttp~=3.8.3
+python-dotenv~=0.21.0
+revChatGPT~=0.0.35

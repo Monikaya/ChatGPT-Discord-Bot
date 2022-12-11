@@ -2,9 +2,7 @@ import nextcord
 from nextcord import Webhook
 import os
 import aiohttp
-import asyncio
 from dotenv import load_dotenv
-# from asyncChatGPT.asyncChatGPT import Chatbot
 from revChatGPT.revChatGPT import Chatbot
 
 load_dotenv()
