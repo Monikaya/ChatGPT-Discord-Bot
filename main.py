@@ -11,11 +11,11 @@ load_dotenv()
 intents = nextcord.Intents.default()
 intents.message_content = True
 
-
 config = {"email": f"{os.getenv('CHATGPT_EMAIL')}", "password": f"{os.getenv('CHATGPT_PASS')}"}
 chatbot = Chatbot(config, conversation_id=None)
 
 bot = nextcord.Client(intents=intents)
+
 
 @bot.event
 async def on_ready():
@@ -30,6 +30,12 @@ async def on_message(message):
             return
         response = chatbot.get_chat_response(message.content, output="text")['message']
         await webhook.send(response)
+
+
+@bot.slash_command()
+async def reset(ctx):
+    chatbot.reset_chat()
+    await ctx.send("Your chat has been reset!")
 
 
 bot.run(os.getenv("TOKEN"))
