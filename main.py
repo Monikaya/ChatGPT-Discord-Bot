@@ -2,8 +2,10 @@ import nextcord
 from nextcord import Webhook
 import os
 import aiohttp
+import asyncio
 from dotenv import load_dotenv
-from revChatGPT.revChatGPT import Chatbot
+#from revChatGPT.revChatGPT import Chatbot
+from asyncChatGPT.asyncChatGPT import Chatbot
 
 load_dotenv()
 intents = nextcord.Intents.default()
@@ -22,12 +24,14 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-    async with aiohttp.ClientSession() as session:
-        webhook = Webhook.from_url(f"{os.getenv('WEBHOOK')}", session=session)
-        if message.webhook_id:
-            return
-        response = chatbot.get_chat_response(message.content, output="text")['message']
-        await webhook.send(response)
+    webhooks = await bot.fetch_webhook(int(os.getenv("WEBHOOK_ID")))
+    if webhooks.channel_id == message.channel.id:
+        async with aiohttp.ClientSession() as session:
+            webhook = Webhook.from_url(f"{os.getenv('WEBHOOK')}", session=session)
+            if message.webhook_id:
+                return
+            response = await chatbot.get_chat_response(message.content, output="text")
+            await webhook.send(response['message'])
 
 
 @bot.slash_command()
