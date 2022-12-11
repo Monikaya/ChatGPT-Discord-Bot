@@ -11,6 +11,8 @@ Create a .env file with the following variables:
 <br>
 WEBHOOK={Webhook}
 <br>
+WEBOOK_ID={Webhook-ID}
+<br>
 TOKEN={Token}
 <br>
 CHATGPT_EMAIL={ChatGPT-Email}
@@ -31,6 +33,5 @@ This is done as to make it more seamless, instead of using a prefix or slash com
 Like a conversation!
 
 ### TODO
-- Make the bot getting the response from OpenAI async
 - Add some more useful commands
 - Other general improvements
