@@ -1,4 +1,7 @@
 # ChatGPT-Discord-Bot
+
+# Due to updates to ChatGPT and the library used to interact with ChatGPT being somewhat deprecated for the time being, this project currently doesn't function though I will update it once possible.
+
 A simple discord bot that interacts with ChatGPT
 
 ### Setup
